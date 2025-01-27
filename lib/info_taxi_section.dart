@@ -1,12 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:taxi_app/model/simple_user.dart';
 import 'package:taxi_app/model/vehiculo.dart';
 
 class InfoTaxiSection extends StatelessWidget {
   final String placa;
 
-  final Vehiculo vehiculoEjemplo = Vehiculo(
+  InfoTaxiSection({super.key, required this.placa});
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    final conductor1 = Conductor(
+    name: 'Juan',
+    apellido: 'Pérez',
+    eps: 'SaludCoop',
+    observaciones: ['Tiene antecedentes médicos de hipertensión'],
+    licenciaType: 'Clase B',
+    licenciaDue: '2026-08-15',
+    photoUrl: 'https://example.com/juan.jpg',
+    rh: 'O+',
+  );
+
+  final conductor2 = Conductor(
+    name: 'Ana',
+    apellido: 'Gómez',
+    eps: 'Medisalud',
+    observaciones: ['Alergia a algunos antibióticos'],
+    licenciaType: 'Clase A',
+    licenciaDue: '2025-12-10',
+    photoUrl: 'https://example.com/ana.jpg',
+    rh: 'A-',
+  );
+
+    final Vehiculo vehiculoEjemplo = Vehiculo(
     placa: 'ABC123',
-    tipo: ['tecnologia', 'habilidad blanda'],
     estado: 'Activo',
     empresaDireccion: 'Carrera 10 #20-30',
     empresaTelefono: '123456789',
@@ -18,12 +46,9 @@ class InfoTaxiSection extends StatelessWidget {
     seguroRCE: true,
     tarjetaOperacion: true,
     photoUrl: 'public/assets/images/taxi1.png',
+    conductores: [conductor1, conductor2]
   );
 
-  InfoTaxiSection({super.key, required this.placa});
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Column(children: [

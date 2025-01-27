@@ -1,12 +1,11 @@
 
-//todo Mejora Futura: solo guardar el codigo en firebase, pues se tiene la lista local y se puede hacer un metodo que retorne todo el objeto en base al codigo
 import 'package:flutter/material.dart';
+import 'package:taxi_app/model/simple_user.dart';
 
 @immutable
 class Vehiculo {
   const Vehiculo({
     this.placa = '',
-    this.tipo = const [],
     this.estado = '',
     this.empresaDireccion = '',
     this.empresaTelefono = '',
@@ -17,13 +16,10 @@ class Vehiculo {
     this.seguroRCC = false,
     this.seguroRCE = false,
     this.tarjetaOperacion = false,
-    //this.conductores = const [],
+    this.conductores = const [],
     this.photoUrl = '',
   });
   final String placa;
-  //? duda jose: algun problema con que sean late?
-  final List<String>
-      tipo; //etiquetas, "tecnologia", "idioma", "habilidad", "otro", "habilidad blanda"
   final String estado;
   final String empresaDireccion;
   final String empresaTelefono;
@@ -34,18 +30,12 @@ class Vehiculo {
   final bool seguroRCC;
   final bool seguroRCE;
   final bool tarjetaOperacion;
-  //final List<SimpleUser> conductores;
+  final List<Conductor> conductores;
   final String photoUrl;
 
   factory Vehiculo.fromMap(Map<String, dynamic> data) {
     return Vehiculo(
-      placa: data['placa'] ?? '',
-      // Convierte 'tipo' a una lista de cadenas de forma segura
-      tipo:
-          (data['tipo'] as List<dynamic>?)?.map((e) => e.toString()).toList() ??
-              [],
-      estado: data['estado'] ??
-          '', // Asegúrate de usar un valor por defecto válido para el tipo int
+      placa: data['placa'] ?? '', 
       empresaDireccion: data['empresaDireccion'] ?? '',
       empresaTelefono: data['empresaTelefono'] ?? 1,
       empresaName: data['empresaName'] ?? '',
@@ -55,10 +45,10 @@ class Vehiculo {
       seguroRCC: data['seguroRCC'] ?? false,
       seguroRCE: data['seguroRCE'] ?? false,
       tarjetaOperacion: data['tarjetaOperacion'] ?? false,
-      // conductores: (data['conductores'] as List<dynamic>?)
-      //         ?.map((e) => SimpleUser.fromMap(e))
-      //         .toList() ??
-      //     [],
+       conductores: (data['conductores'] as List<dynamic>?)
+               ?.map((e) => Conductor.fromMap(e))
+               .toList() ??
+           [],
       photoUrl: data['photoUrl'] ?? '',
     );
   }
@@ -66,7 +56,6 @@ class Vehiculo {
   Map<String, dynamic> toMap() {
     return {
       'placa': placa,
-      'tipo': tipo,
       'estado': estado,
       'empresaDireccion': empresaDireccion,
       'empresaTelefono': empresaTelefono,
@@ -77,7 +66,7 @@ class Vehiculo {
       'seguroRCC': seguroRCC,
       'seguroRCE': seguroRCE,
       'tarjetaOperacion': tarjetaOperacion,
-      //'conductores': conductores.map((e) => e.toMap()).toList(),
+      'conductores': conductores.map((e) => e.toMap()).toList(),
       'photoUrl': photoUrl,
     };
   }
@@ -95,12 +84,11 @@ class Vehiculo {
     bool? seguroRCC,
     bool? seguroRCE,
     bool? tarjetaOperacion,
-    //List<SimpleUser>? conductores,
+    List<Conductor>? conductores,
     String? photoUrl,
   }) {
     return Vehiculo(
       placa: placa ?? this.placa,
-      tipo: tipo ?? this.tipo,
       estado: estado ?? this.estado,
       empresaDireccion: empresaDireccion ?? this.empresaDireccion,
       empresaTelefono: empresaTelefono ?? this.empresaTelefono,
@@ -111,13 +99,13 @@ class Vehiculo {
       seguroRCC: seguroRCC ?? this.seguroRCC,
       seguroRCE: seguroRCE ?? this.seguroRCE,
       tarjetaOperacion: tarjetaOperacion ?? this.tarjetaOperacion,
-      //conductores: conductores ?? this.conductores,
+      conductores: conductores ?? this.conductores,
       photoUrl: photoUrl ?? this.photoUrl,
     );
   }
 
   @override
   String toString() {
-    return 'placa: $placa, etiquetas: $tipo, empresaTelefono: $empresaTelefono, cantidadConductores: }';//${conductores.length
+    return 'placa: $placa, empresaTelefono: $empresaTelefono, cantidadConductores:${conductores.length }';
   }
 }
