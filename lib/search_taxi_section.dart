@@ -50,9 +50,9 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                 ),
               ),
               Card(
-                color: const Color.fromARGB(95, 77, 170, 251),
+                color: const Color.fromRGBO(1, 173, 239, 0.42),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: SizedBox(
                   height: 250,
@@ -114,7 +114,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => InfoTaxiSection(
-                                      placa: _controller.text,
+                                      placa: _controller.text.toUpperCase(),
                                     ),
                                   ),
                                 );
@@ -128,7 +128,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                             style: ElevatedButton.styleFrom(
                               minimumSize: Size(120, 40),
                               backgroundColor:
-                                  const Color.fromARGB(255, 31, 58, 193),
+                                  const Color.fromARGB(255, 46, 58, 147),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12),
                               ),
