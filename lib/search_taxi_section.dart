@@ -128,14 +128,14 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                                 );
 
                                 final conductor2 = Conductor(
-                                  name: 'David',
+                                  name: 'Toreto',
                                   apellido: 'Gómez',
                                   arl: 'Sura',
                                   eps: 'Medisalud',
                                   observaciones: [5, 4],
                                   licenciaType: 'Clase A',
                                   licenciaDue: '2025-12-10',
-                                  photoUrl: 'public/assets/images/taxi1.png',
+                                  photoUrl: 'public/assets/images/toreto.jpg',
                                   pensiones: 'Protección',
                                   rh: 'A-',
                                 );
@@ -154,6 +154,21 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                                     seguroRCE: true,
                                     tarjetaOperacion: true,
                                     photoUrl: 'public/assets/images/taxi1.png',
+                                    conductores: [conductor1, conductor2],
+                                  ),
+                                  Vehiculo(
+                                    placa: 'BDB468',
+                                    estado: 'Activo',
+                                    empresaDireccion: 'Calle 10 #70-50',
+                                    empresaTelefono: '987654432',
+                                    empresaName: 'dalocu Trips',
+                                    vehiculoId: 'vehiculo002',
+                                    soat: false,
+                                    tecnoMecanica: false,
+                                    seguroRCC: false,
+                                    seguroRCE: false,
+                                    tarjetaOperacion: false,
+                                    photoUrl: 'public/assets/images/ford.jpg',
                                     conductores: [conductor1, conductor2],
                                   ),
                                 ];

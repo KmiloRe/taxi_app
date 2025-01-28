@@ -9,8 +9,6 @@ class InfoTaxiSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
-
     void calificarConductor(BuildContext context, Conductor conductor) {
       showDialog(
         context: context,
@@ -115,15 +113,16 @@ class InfoTaxiSection extends StatelessWidget {
                     height: 20,
                   ),
                   Card(
+                    
                     color: const Color.fromARGB(255, 216, 215, 215),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: Column(
                         children: [
                           Card(
+                            clipBehavior: Clip.antiAlias,
                             child: SizedBox(
-                              height: 170,
-                              width: double.maxFinite,
+                              height: 300,
                               child: Positioned.fill(
                                 child: Image.asset(
                                   vehiculo.photoUrl,
@@ -209,12 +208,8 @@ class InfoTaxiSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            vehiculo.soat
-                                ? Icons.check_circle
-                                : Icons.cancel,
-                            color: vehiculo.soat
-                                ? Colors.green
-                                : Colors.red,
+                            vehiculo.soat ? Icons.check_circle : Icons.cancel,
+                            color: vehiculo.soat ? Colors.green : Colors.red,
                           ),
                           const SizedBox(height: 5),
                           const Text('SOAT'),
@@ -242,9 +237,8 @@ class InfoTaxiSection extends StatelessWidget {
                             vehiculo.seguroRCC
                                 ? Icons.check_circle
                                 : Icons.cancel,
-                            color: vehiculo.seguroRCC
-                                ? Colors.green
-                                : Colors.red,
+                            color:
+                                vehiculo.seguroRCC ? Colors.green : Colors.red,
                           ),
                           const SizedBox(height: 5),
                           const Text('Seguro RCC'),
@@ -260,12 +254,9 @@ class InfoTaxiSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            vehiculo.soat
-                                ? Icons.check_circle
-                                : Icons.cancel,
-                            color: vehiculo.seguroRCE
-                                ? Colors.green
-                                : Colors.red,
+                            vehiculo.soat ? Icons.check_circle : Icons.cancel,
+                            color:
+                                vehiculo.seguroRCE ? Colors.green : Colors.red,
                           ),
                           const SizedBox(height: 5),
                           const Text('Seguro RCE'),
@@ -317,7 +308,8 @@ class InfoTaxiSection extends StatelessWidget {
                                   ),
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
                                     Column(
                                       children: [
@@ -424,11 +416,19 @@ class InfoTaxiSection extends StatelessWidget {
                                                     255, 46, 58, 147))),
                                         SizedBox(height: 10),
                                         ElevatedButton(
-                                          style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 46, 58, 147)),
-),
+                                          style: ButtonStyle(
+                                            backgroundColor:
+                                                WidgetStateProperty.all<Color>(
+                                                    Color.fromARGB(
+                                                        255, 46, 58, 147)),
+                                          ),
                                           onPressed: () => calificarConductor(
                                               context, conductor),
-                                          child: Text('Calificar Conductor',style: TextStyle(color: Colors.white),),
+                                          child: Text(
+                                            'Calificar Conductor',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
                                         ),
                                       ],
                                     )
