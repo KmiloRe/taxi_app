@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 @immutable
@@ -17,39 +16,36 @@ class Conductor {
   final String name;
   final String apellido;
   final String eps;
-  final List<String> observaciones;
+  final List<int> observaciones;
   final String licenciaDue;
   final String photoUrl;
   final String rh;
   final String licenciaType;
 
+  double get promedioObservaciones {
+    if (observaciones.isEmpty) {
+      return 0.0;
+    }
+    int suma = observaciones.reduce((a, b) => a + b);
+    return suma / observaciones.length;
+  }
 
-  // final DateTime? birthDate;
 
-  // int get age {
-  //   if (birthDate == null) return 0;
-  //   final today = DateTime.now();
-  //   int age = today.year - birthDate!.year;
-  //   if (today.month < birthDate!.month ||
-  //       (today.month == birthDate!.month && today.day < birthDate!.day)) {
-  //     age--;
-  //   }
-  //   return age;
-  // }
+  Conductor addCalificacion(int calificacion) {
+    if (calificacion >= 1 && calificacion <= 5) {
+      return copyWith(observaciones: [...observaciones, calificacion]);
+    } else {
+      return this;
+    }
+  }
 
   factory Conductor.fromMap(Map<String, dynamic> data) {
-    List<String> observaciones = [];
-    Color firebaseColor = const Color(0x12345678);
+    List<int> observaciones = [];
 
     if (data['observaciones'] != null) {
       observaciones = (data['observaciones'] as List<dynamic>)
-          .map((e) => e.toString())
+          .map((e) => e is int ? e : int.tryParse(e.toString()) ?? 0)
           .toList();
-    }
-    //? duda jose: como manejar esto del color
-    if (data['colour'] != null && data['colour'].length > 3) {
-      int valor = int.parse(data['colour']);
-      firebaseColor = Color(valor).withOpacity(1);
     }
 
     return Conductor(
@@ -73,16 +69,13 @@ class Conductor {
         'licenciaDue': licenciaDue,
         'photoUrl': photoUrl,
         'rh': rh,
-
       };
 
   Conductor copyWith({
     String? eps,
     String? name,
     String? apellido,
-    Color? colour,
-    String? genero,
-    List<String>? observaciones,
+    List<int>? observaciones,
     String? licenciaType,
     String? licenciaDue,
     String? photoUrl,
