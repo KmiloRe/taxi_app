@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_app/info_taxi_section.dart';
+import 'package:taxi_app/model/simple_user.dart';
+import 'package:taxi_app/model/vehiculo.dart';
 
 class SearchTaxiSection extends StatefulWidget {
   const SearchTaxiSection({
@@ -108,16 +110,88 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                           const SizedBox(height: 10),
                           ElevatedButton(
                             onPressed: () {
+
                               if (_errorMessage.isEmpty &&
                                   validarPlaca(_controller.text).isEmpty) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => InfoTaxiSection(
-                                      placa: _controller.text.toUpperCase(),
-                                    ),
+                                final conductor1 = Conductor(
+                                  name: 'David',
+                                  apellido: 'Lopez',
+                                  eps: 'SaludCoop',
+                                  arl: 'Axa',
+                                  observaciones: [5, 3, 3, 4],
+                                  licenciaType: 'Clase B',
+                                  licenciaDue: '2026-08-15',
+                                  photoUrl:
+                                      'public/assets/images/FotoCarneDavidLopezCuervo.jpg',
+                                  pensiones: 'Colpensiones',
+                                  rh: 'O+',
+                                );
+
+                                final conductor2 = Conductor(
+                                  name: 'David',
+                                  apellido: 'Gómez',
+                                  arl: 'Sura',
+                                  eps: 'Medisalud',
+                                  observaciones: [5, 4],
+                                  licenciaType: 'Clase A',
+                                  licenciaDue: '2025-12-10',
+                                  photoUrl: 'public/assets/images/taxi1.png',
+                                  pensiones: 'Protección',
+                                  rh: 'A-',
+                                );
+
+                                List<Vehiculo> vehiculos = [
+                                  Vehiculo(
+                                    placa: 'ABC123',
+                                    estado: 'Activo',
+                                    empresaDireccion: 'Carrera 10 #20-30',
+                                    empresaTelefono: '123456789',
+                                    empresaName: 'Transporte Seguro S.A.',
+                                    vehiculoId: 'vehiculo001',
+                                    soat: true,
+                                    tecnoMecanica: true,
+                                    seguroRCC: false,
+                                    seguroRCE: true,
+                                    tarjetaOperacion: true,
+                                    photoUrl: 'public/assets/images/taxi1.png',
+                                    conductores: [conductor1, conductor2],
+                                  ),
+                                ];
+
+                                final vehiculo = vehiculos.firstWhere(
+                                  (v) =>
+                                      v.placa.toUpperCase() ==
+                                      _controller.text.toUpperCase(),
+                                  orElse: () => Vehiculo(
+                                    placa: '',
+                                    estado: '',
+                                    empresaDireccion: '',
+                                    empresaTelefono: '',
+                                    empresaName: '',
+                                    vehiculoId: '',
+                                    soat: false,
+                                    tecnoMecanica: false,
+                                    seguroRCC: false,
+                                    seguroRCE: false,
+                                    tarjetaOperacion: false,
+                                    photoUrl: '',
+                                    conductores: [],
                                   ),
                                 );
+
+                                if (vehiculo.placa.isEmpty) {
+                                  setState(() {
+                                    _errorMessage = "Placa no encontrada";
+                                  });
+                                } else {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          InfoTaxiSection(vehiculo: vehiculo),
+                                    ),
+                                  );
+                                }
                               } else {
                                 setState(() {
                                   _errorMessage =
@@ -136,9 +210,10 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                             child: Text(
                               'Enviar',
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 20),
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
                             ),
                           ),
                         ],

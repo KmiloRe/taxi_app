@@ -6,9 +6,11 @@ class Conductor {
     this.name = '',
     this.apellido = '',
     this.eps = '',
+    this.arl = '',
     this.observaciones = const [],
     this.licenciaType = '',
     this.licenciaDue = '',
+    this.pensiones = '',
     this.photoUrl = '',
     this.rh = '',
   });
@@ -16,11 +18,13 @@ class Conductor {
   final String name;
   final String apellido;
   final String eps;
+  final String arl;
   final List<int> observaciones;
   final String licenciaDue;
   final String photoUrl;
   final String rh;
   final String licenciaType;
+  final String pensiones;
 
   double get promedioObservaciones {
     if (observaciones.isEmpty) {
@@ -52,9 +56,11 @@ class Conductor {
       name: data['name'] ?? '',
       apellido: data['apellido'] ?? '',
       eps: data['eps'] ?? '',
+      arl: data['arl'] ?? '',
       observaciones: observaciones,
       licenciaType: data['licenciaType'] ?? '',
       licenciaDue: data['licenciaDue'] ?? '',
+      pensiones: data['pensiones'] ?? '',
       photoUrl: data['photoUrl'] ?? '',
       rh: data['rh'] ?? '',
     );
@@ -64,30 +70,36 @@ class Conductor {
         'name': name,
         'apellido': apellido,
         'eps': eps,
+        'arl': arl,
         'observaciones': observaciones,
         'licenciaType': licenciaType,
         'licenciaDue': licenciaDue,
+        'pensiones': pensiones,
         'photoUrl': photoUrl,
         'rh': rh,
       };
 
   Conductor copyWith({
     String? eps,
+    String? arl,
     String? name,
     String? apellido,
     List<int>? observaciones,
     String? licenciaType,
     String? licenciaDue,
+    String? pensiones,
     String? photoUrl,
     String? rh,
   }) {
     return Conductor(
       eps: eps ?? this.eps,
+      arl: arl ?? this.arl,
       name: name ?? this.name,
       apellido: apellido ?? this.apellido,
       observaciones: observaciones ?? this.observaciones,
       licenciaType: licenciaType ?? this.licenciaType,
       licenciaDue: licenciaDue ?? this.licenciaDue,
+      pensiones: pensiones ?? this.pensiones,
       photoUrl: photoUrl ?? this.photoUrl,
       rh: rh ?? this.rh,
     );

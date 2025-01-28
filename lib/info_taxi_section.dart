@@ -3,48 +3,13 @@ import 'package:taxi_app/model/simple_user.dart';
 import 'package:taxi_app/model/vehiculo.dart';
 
 class InfoTaxiSection extends StatelessWidget {
-  final String placa;
+  final Vehiculo vehiculo;
 
-  InfoTaxiSection({super.key, required this.placa});
+  const InfoTaxiSection({super.key, required this.vehiculo});
 
   @override
   Widget build(BuildContext context) {
-    final conductor1 = Conductor(
-      name: 'David',
-      apellido: 'Lopez',
-      eps: 'SaludCoop',
-      observaciones: [5, 3, 3, 4],
-      licenciaType: 'Clase B',
-      licenciaDue: '2026-08-15',
-      photoUrl: 'public/assets/images/FotoCarneDavidLopezCuervo.jpg',
-      rh: 'O+',
-    );
-
-    final conductor2 = Conductor(
-      name: 'David',
-      apellido: 'Gómez',
-      eps: 'Medisalud',
-      observaciones: [5, 4],
-      licenciaType: 'Clase A',
-      licenciaDue: '2025-12-10',
-      photoUrl: 'public/assets/images/taxi1.png',
-      rh: 'A-',
-    );
-
-    final Vehiculo vehiculoEjemplo = Vehiculo(
-        placa: 'ABC123',
-        estado: 'Activo',
-        empresaDireccion: 'Carrera 10 #20-30',
-        empresaTelefono: '123456789',
-        empresaName: 'Transporte Seguro S.A.',
-        vehiculoId: 'vehiculo001',
-        soat: true,
-        tecnoMecanica: true,
-        seguroRCC: false,
-        seguroRCE: true,
-        tarjetaOperacion: true,
-        photoUrl: 'public/assets/images/taxi1.png',
-        conductores: [conductor1, conductor2]);
+  
 
     void calificarConductor(BuildContext context, Conductor conductor) {
       showDialog(
@@ -116,7 +81,7 @@ class InfoTaxiSection extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        placa,
+                        vehiculo.placa,
                         textAlign: TextAlign.end,
                         style: const TextStyle(
                           fontSize: 20,
@@ -135,7 +100,7 @@ class InfoTaxiSection extends StatelessWidget {
                 children: [
                   Center(
                     child: Text(
-                      vehiculoEjemplo.empresaName.toUpperCase(),
+                      vehiculo.empresaName.toUpperCase(),
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
@@ -161,7 +126,7 @@ class InfoTaxiSection extends StatelessWidget {
                               width: double.maxFinite,
                               child: Positioned.fill(
                                 child: Image.asset(
-                                  vehiculoEjemplo.photoUrl,
+                                  vehiculo.photoUrl,
                                   fit: BoxFit.fill,
                                 ),
                               ),
@@ -174,7 +139,7 @@ class InfoTaxiSection extends StatelessWidget {
                                 children: [
                                   SizedBox(height: 15),
                                   Text(
-                                    vehiculoEjemplo.empresaDireccion,
+                                    vehiculo.empresaDireccion,
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
@@ -186,7 +151,7 @@ class InfoTaxiSection extends StatelessWidget {
                                   SizedBox(height: 15),
                                   Text(
                                     textAlign: TextAlign.start,
-                                    vehiculoEjemplo.empresaTelefono,
+                                    vehiculo.empresaTelefono,
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
@@ -203,7 +168,7 @@ class InfoTaxiSection extends StatelessWidget {
                                 children: [
                                   SizedBox(height: 15),
                                   Text(
-                                    vehiculoEjemplo.estado,
+                                    vehiculo.estado,
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
@@ -214,7 +179,7 @@ class InfoTaxiSection extends StatelessWidget {
                                   ),
                                   SizedBox(height: 15),
                                   Text(
-                                    vehiculoEjemplo
+                                    vehiculo
                                         .vehiculoId, //TODO K: Falta campo interno
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
@@ -244,10 +209,10 @@ class InfoTaxiSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            vehiculoEjemplo.soat
+                            vehiculo.soat
                                 ? Icons.check_circle
                                 : Icons.cancel,
-                            color: vehiculoEjemplo.soat
+                            color: vehiculo.soat
                                 ? Colors.green
                                 : Colors.red,
                           ),
@@ -259,10 +224,10 @@ class InfoTaxiSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            vehiculoEjemplo.tecnoMecanica
+                            vehiculo.tecnoMecanica
                                 ? Icons.check_circle
                                 : Icons.cancel,
-                            color: vehiculoEjemplo.tecnoMecanica
+                            color: vehiculo.tecnoMecanica
                                 ? Colors.green
                                 : Colors.red,
                           ),
@@ -274,10 +239,10 @@ class InfoTaxiSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            vehiculoEjemplo.seguroRCC
+                            vehiculo.seguroRCC
                                 ? Icons.check_circle
                                 : Icons.cancel,
-                            color: vehiculoEjemplo.seguroRCC
+                            color: vehiculo.seguroRCC
                                 ? Colors.green
                                 : Colors.red,
                           ),
@@ -295,10 +260,10 @@ class InfoTaxiSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            vehiculoEjemplo.soat
+                            vehiculo.soat
                                 ? Icons.check_circle
                                 : Icons.cancel,
-                            color: vehiculoEjemplo.seguroRCE
+                            color: vehiculo.seguroRCE
                                 ? Colors.green
                                 : Colors.red,
                           ),
@@ -310,10 +275,10 @@ class InfoTaxiSection extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
-                            vehiculoEjemplo.tecnoMecanica
+                            vehiculo.tecnoMecanica
                                 ? Icons.check_circle
                                 : Icons.cancel,
-                            color: vehiculoEjemplo.tarjetaOperacion
+                            color: vehiculo.tarjetaOperacion
                                 ? Colors.green
                                 : Colors.red,
                           ),
@@ -329,52 +294,145 @@ class InfoTaxiSection extends StatelessWidget {
                       ListView.builder(
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
-                        itemCount: vehiculoEjemplo.conductores.length,
+                        itemCount: vehiculo.conductores.length,
                         itemBuilder: (context, index) {
-                          final conductor = vehiculoEjemplo.conductores[index];
+                          final conductor = vehiculo.conductores[index];
+                          final cantCond = index + 1;
                           return Card(
                             margin: EdgeInsets.all(10),
                             child: ExpansionTile(
                               title: Text(
-                                  '${conductor.name} ${conductor.apellido}'),
-                              subtitle:
-                                  Text('Licencia: ${conductor.licenciaType}'),
+                                'Conductor $cantCond',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 46, 58, 147),
+                                    fontWeight: FontWeight.bold),
+                              ),
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('EPS: ${conductor.eps}',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      SizedBox(height: 10),
-                                      Text(
-                                        'Promedio de calificación: ${conductor.promedioObservaciones}',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                      SizedBox(height: 10),
-                                      Text(
-                                          'Licencia Vence: ${conductor.licenciaDue}',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      SizedBox(height: 10),
-                                      Text('RH: ${conductor.rh}',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold)),
-                                      SizedBox(height: 10),
-                                      Image.network(conductor.photoUrl,
-                                          height: 100, width: 100),
-                                      SizedBox(height: 10),
-                                      ElevatedButton(
-                                        onPressed: () => calificarConductor(
-                                            context, conductor),
-                                        child: Text('Calificar Conductor'),
-                                      ),
-                                    ],
+                                Center(
+                                  child: CircleAvatar(
+                                    radius: 70,
+                                    backgroundImage:
+                                        AssetImage(conductor.photoUrl),
+                                    backgroundColor: Colors.transparent,
                                   ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.all(10),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(height: 10),
+                                              Text(
+                                                  '${conductor.name.toUpperCase()} ${conductor.apellido.toUpperCase()}',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Color.fromARGB(
+                                                          255, 46, 58, 147))),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                "Licencia • Categoría",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(conductor.licenciaType,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                "Licencia • Vencimiento",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(conductor.licenciaDue,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                "Grupo Sanguíneo",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(conductor.rh,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                "EPS",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(conductor.eps,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                "ARL",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(conductor.arl,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                "Pensiones",
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black),
+                                              ),
+                                              Text(conductor.pensiones,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Column(
+                                      children: [
+                                        Icon(
+                                          Icons.star_rounded,
+                                          size: 50,
+                                          color:
+                                              Color.fromARGB(255, 46, 58, 147),
+                                        ),
+                                        Text(
+                                            conductor.promedioObservaciones
+                                                .toString(),
+                                            style: TextStyle(
+                                                fontSize: 40,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color.fromARGB(
+                                                    255, 46, 58, 147))),
+                                        SizedBox(height: 10),
+                                        ElevatedButton(
+                                          style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 46, 58, 147)),
+),
+                                          onPressed: () => calificarConductor(
+                                              context, conductor),
+                                          child: Text('Calificar Conductor',style: TextStyle(color: Colors.white),),
+                                        ),
+                                      ],
+                                    )
+                                  ],
                                 ),
                               ],
                             ),
