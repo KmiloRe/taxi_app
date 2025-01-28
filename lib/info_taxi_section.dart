@@ -123,11 +123,9 @@ class InfoTaxiSection extends StatelessWidget {
                             clipBehavior: Clip.antiAlias,
                             child: SizedBox(
                               height: 300,
-                              child: Positioned.fill(
-                                child: Image.asset(
-                                  vehiculo.photoUrl,
-                                  fit: BoxFit.fill,
-                                ),
+                              child: Image.asset(
+                                vehiculo.photoUrl,
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),
