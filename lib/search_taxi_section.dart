@@ -168,7 +168,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                                     seguroRCC: false,
                                     seguroRCE: false,
                                     tarjetaOperacion: false,
-                                    photoUrl: 'public/assets/images/ford.jpg',
+                                    photoUrl: 'public/assets/images/download.png',
                                     conductores: [conductor1, conductor2],
                                   ),
                                 ];
