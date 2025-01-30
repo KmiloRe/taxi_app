@@ -309,7 +309,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                   options: CarouselOptions(
                     height: 60,
                     autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 2),
+                    autoPlayInterval: Duration(seconds: 3),
                     enlargeCenterPage: true,
                     viewportFraction: 1,
                   ),
