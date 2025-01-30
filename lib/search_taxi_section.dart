@@ -1,3 +1,5 @@
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:taxi_app/info_taxi_section.dart';
 import 'package:taxi_app/model/simple_user.dart';
@@ -110,7 +112,6 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                           const SizedBox(height: 10),
                           ElevatedButton(
                             onPressed: () {
-
                               if (_errorMessage.isEmpty &&
                                   validarPlaca(_controller.text).isEmpty) {
                                 final conductor1 = Conductor(
@@ -168,7 +169,8 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                                     seguroRCC: false,
                                     seguroRCE: false,
                                     tarjetaOperacion: false,
-                                    photoUrl: 'public/assets/images/download.png',
+                                    photoUrl:
+                                        'public/assets/images/download.png',
                                     conductores: [conductor1, conductor2],
                                   ),
                                 ];
@@ -266,7 +268,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                   fontSize: 15,
                   color: Colors.white,
                 ),
-              ),
+              ),  
               SizedBox(
                 height: 20,
               ),
@@ -289,6 +291,28 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
                   color: Colors.white,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: CarouselSlider(
+                  disableGesture: true,
+                  items: [
+                    Image.asset('public/assets/images/bann1.jpg',
+                        fit: BoxFit.fill),
+                    Image.asset('public/assets/images/bann2.jpg',
+                        fit: BoxFit.fill),
+                  ],
+                  options: CarouselOptions(
+                    height: 60,
+                    autoPlay: true,
+                    autoPlayInterval: Duration(seconds: 2),
+                    enlargeCenterPage: true,
+                    viewportFraction: 1,
+                  ),
                 ),
               ),
             ],
