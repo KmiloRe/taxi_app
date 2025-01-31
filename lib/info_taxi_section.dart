@@ -15,46 +15,64 @@ class InfoTaxiSection extends StatelessWidget {
         builder: (context) {
           int rating = 1;
 
-          return AlertDialog(
-            title: Text('Calificar a ${conductor.name} ${conductor.apellido}'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(5, (index) {
-                    return IconButton(
-                      icon: Icon(
-                        Icons.star,
-                        color: index < rating ? Colors.yellow : Colors.grey,
-                        size: 20,
-                      ),
-                      onPressed: () {
-                        rating = index + 1;
-                        (context as Element).markNeedsBuild();
-                      },
-                    );
-                  }),
+          return StatefulBuilder(
+            builder: (context, setState) {
+              return AlertDialog(
+                title:
+                    Text('Calificar a ${conductor.name} ${conductor.apellido}', style: TextStyle(color: const Color.fromARGB(255, 46, 58, 147)),),
+                content: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(5, (index) {
+                        return IconButton(
+                          icon: Icon(
+                            Icons.star,
+                            color: index < rating ? Colors.yellow : Colors.grey,
+                            size:
+                                30, // Ajuste de tamaño para mejor visualización
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              rating = index + 1;
+                            });
+                          },
+                        );
+                      }),
+                    ),
+                    SizedBox(height: 10),
+                    Text('Calificación dada: $rating'),
+                  ],
+                  
                 ),
-                SizedBox(height: 20),
-                Text('Calificación actual: $rating'),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  conductor.addCalificacion(rating);
-                  Navigator.pop(context);
-                },
-                child: Text('Aceptar'),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Cancelar'),
-              ),
-            ],
+                actions: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          conductor.addCalificacion(rating);
+                          Navigator.pop(context);
+                        },
+                        child: Text('Aceptar',style: TextStyle(
+                              color: const Color.fromARGB(255, 46, 58, 147)),),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          'Cancelar',
+                          style: TextStyle(
+                              color: const Color.fromARGB(255, 46, 58, 147)),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              );
+            },
           );
         },
       );
@@ -113,7 +131,6 @@ class InfoTaxiSection extends StatelessWidget {
                     height: 20,
                   ),
                   Card(
-                    
                     color: const Color.fromARGB(255, 216, 215, 215),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
