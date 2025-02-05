@@ -5,6 +5,9 @@ import 'package:taxi_app/info_taxi_section.dart';
 import 'package:taxi_app/model/simple_user.dart';
 import 'package:taxi_app/model/vehiculo.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+//todo k: populate the gitignore file, the one here is retarded
 
 class SearchTaxiSection extends StatefulWidget {
   const SearchTaxiSection({
@@ -16,6 +19,20 @@ class SearchTaxiSection extends StatefulWidget {
 }
 
 class _SearchTaxiSectionState extends State<SearchTaxiSection> {
+  Future<void> fetchData() async {
+    final url = Uri.parse(
+        'https://grupoempresarialdts.com/appdataservip/json_vehiculo_qr.php?placa=FXU925');
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      print('Data: $data');
+    } else {
+      print('Request failed with status: ${response.statusCode}');
+    }
+  }
+
   final TextEditingController _controller = TextEditingController();
   String _errorMessage = '';
 
