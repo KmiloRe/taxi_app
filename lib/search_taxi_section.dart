@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:taxi_app/info_taxi_section.dart';
 import 'package:taxi_app/model/simple_user.dart';
 import 'package:taxi_app/model/vehiculo.dart';
+import 'package:http/http.dart' as http;
 
 class SearchTaxiSection extends StatefulWidget {
   const SearchTaxiSection({
@@ -268,7 +269,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                   fontSize: 15,
                   color: Colors.white,
                 ),
-              ),  
+              ),
               SizedBox(
                 height: 20,
               ),
