@@ -145,10 +145,15 @@ class InfoTaxiSection extends StatelessWidget {
                             clipBehavior: Clip.antiAlias,
                             child: SizedBox(
                               height: 300,
-                              child: Image.network(
-                                vehiculo.photoUrl,
-                                fit: BoxFit.fill,
-                              ),
+                              child: vehiculo.photoUrl.isNotEmpty
+                                  ? Image.network(
+                                      vehiculo.photoUrl,
+                                      fit: BoxFit.fill,
+                                    )
+                                  : Image.asset(
+                                      'public/assets/images/taxi1.png',
+                                      fit: BoxFit.fill,
+                                    ),
                             ),
                           ),
                           Row(

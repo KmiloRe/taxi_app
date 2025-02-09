@@ -21,7 +21,7 @@ class SearchTaxiSection extends StatefulWidget {
 class _SearchTaxiSectionState extends State<SearchTaxiSection> {
   Future<void> fetchData(String placa) async {
     final url = Uri.parse(
-        'https://grupoempresarialdts.com/appdataservip/json_vehiculo_qr.php?placa=FXU925');
+        'https://grupoempresarialdts.com/appdataservip/json_vehiculo_qr.php?placa=$placa');
 
     final response = await http.get(url);
 
