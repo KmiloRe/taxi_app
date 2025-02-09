@@ -444,9 +444,14 @@ class InfoTaxiSection extends StatelessWidget {
                                         ElevatedButton(
                                           style: ButtonStyle(
                                             backgroundColor:
-                                                WidgetStateProperty.all<Color>(
-                                                    Color.fromARGB(
+                                                MaterialStateProperty
+                                                    .all<Color>(Color.fromARGB(
                                                         255, 46, 58, 147)),
+                                            padding: MaterialStateProperty.all<
+                                                    EdgeInsets>(
+                                                EdgeInsets.symmetric(
+                                                    horizontal: 10,
+                                                    vertical: 5)),
                                           ),
                                           onPressed: () => calificarConductor(
                                               context, conductor),
