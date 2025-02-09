@@ -28,6 +28,53 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       print('Data: $data');
+      final vehiculoData = data['data']['vehiculos'][0];
+      final documentos = vehiculoData['documentos'] as List;
+      final conductores = (vehiculoData['conductores'] as List)
+          .map((con) => Conductor(
+                photoUrl:
+                    con['foto'].replaceFirst('.com/', '.com/appdataservip/'),
+                name: con['nombre'].split(' ')[0],
+                apellido: con['nombre'].split(' ').sublist(1).join(' '),
+                licenciaType: con['categoria_licencia'],
+                licenciaDue: con['vencimiento_licencia'],
+                rh: con['grupo_sanguineo'],
+                eps: con['eps'],
+                arl: con['arl'],
+                pensiones: con['pensiones'],
+                observaciones: [], // Assuming no observations in the JSON
+              ))
+          .toList();
+
+      final vehiculo = Vehiculo(
+        placa: vehiculoData['placa'],
+        estado: vehiculoData['estado'],
+        empresaDireccion: vehiculoData['direccion_empresa'],
+        empresaTelefono: vehiculoData['telefono_empresa'],
+        empresaName: vehiculoData['razon_social_empresa'],
+        vehiculoId: vehiculoData['interno'],
+        soat: documentos.any((doc) =>
+            doc['tipo_documento'] == 'SOAT' && doc['estado'] == 'Activo'),
+        tecnoMecanica: documentos.any((doc) =>
+            doc['tipo_documento'] == 'REVISION TECNICO MECANICA' &&
+            doc['estado'] == 'Activo'),
+        seguroRCC: documentos.any((doc) =>
+            doc['tipo_documento'] == 'SEGURO RCC' && doc['estado'] == 'Activo'),
+        seguroRCE: documentos.any((doc) =>
+            doc['tipo_documento'] == 'SEGURO RCE' && doc['estado'] == 'Activo'),
+        tarjetaOperacion: documentos.any((doc) =>
+            doc['tipo_documento'] == 'TARJETA DE OPERACION' &&
+            doc['estado'] == 'Activo'),
+        photoUrl: vehiculoData['foto'],
+        conductores: conductores,
+      );
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => InfoTaxiSection(vehiculo: vehiculo),
+        ),
+      );
     } else {
       print('Request failed with status: ${response.statusCode}');
     }
@@ -132,6 +179,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                             onPressed: () {
                               if (_errorMessage.isEmpty &&
                                   validarPlaca(_controller.text).isEmpty) {
+                                fetchData(_controller.text);
                                 final conductor1 = Conductor(
                                   name: 'David',
                                   apellido: 'Lopez',

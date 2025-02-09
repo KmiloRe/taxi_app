@@ -18,8 +18,11 @@ class InfoTaxiSection extends StatelessWidget {
           return StatefulBuilder(
             builder: (context, setState) {
               return AlertDialog(
-                title:
-                    Text('Calificar a ${conductor.name} ${conductor.apellido}', style: TextStyle(color: const Color.fromARGB(255, 46, 58, 147)),),
+                title: Text(
+                  'Calificar a ${conductor.name} ${conductor.apellido}',
+                  style:
+                      TextStyle(color: const Color.fromARGB(255, 46, 58, 147)),
+                ),
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -44,7 +47,6 @@ class InfoTaxiSection extends StatelessWidget {
                     SizedBox(height: 10),
                     Text('Calificación dada: $rating'),
                   ],
-                  
                 ),
                 actions: [
                   Row(
@@ -55,8 +57,11 @@ class InfoTaxiSection extends StatelessWidget {
                           conductor.addCalificacion(rating);
                           Navigator.pop(context);
                         },
-                        child: Text('Aceptar',style: TextStyle(
-                              color: const Color.fromARGB(255, 46, 58, 147)),),
+                        child: Text(
+                          'Aceptar',
+                          style: TextStyle(
+                              color: const Color.fromARGB(255, 46, 58, 147)),
+                        ),
                       ),
                       TextButton(
                         onPressed: () {
@@ -140,7 +145,7 @@ class InfoTaxiSection extends StatelessWidget {
                             clipBehavior: Clip.antiAlias,
                             child: SizedBox(
                               height: 300,
-                              child: Image.asset(
+                              child: Image.network(
                                 vehiculo.photoUrl,
                                 fit: BoxFit.fill,
                               ),
@@ -318,7 +323,8 @@ class InfoTaxiSection extends StatelessWidget {
                                   child: CircleAvatar(
                                     radius: 70,
                                     backgroundImage:
-                                        AssetImage(conductor.photoUrl),
+                                        NetworkImage(conductor.photoUrl) ??
+                                            AssetImage(conductor.photoUrl),
                                     backgroundColor: Colors.transparent,
                                   ),
                                 ),
