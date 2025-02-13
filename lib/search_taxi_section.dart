@@ -124,7 +124,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: SizedBox(
-                  height: 250,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   width: 350,
                   child: Center(
                     child: Padding(
@@ -373,7 +373,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                         fit: BoxFit.fill),
                   ],
                   options: CarouselOptions(
-                    height: 60,
+                    height: MediaQuery.of(context).size.height * 0.1,
                     autoPlay: true,
                     autoPlayInterval: Duration(seconds: 3),
                     enlargeCenterPage: true,
