@@ -444,10 +444,10 @@ class InfoTaxiSection extends StatelessWidget {
                                         ElevatedButton(
                                           style: ButtonStyle(
                                             backgroundColor:
-                                                MaterialStateProperty
-                                                    .all<Color>(Color.fromARGB(
+                                                WidgetStateProperty.all<Color>(
+                                                    Color.fromARGB(
                                                         255, 46, 58, 147)),
-                                            padding: MaterialStateProperty.all<
+                                            padding: WidgetStateProperty.all<
                                                     EdgeInsets>(
                                                 EdgeInsets.symmetric(
                                                     horizontal: 10,

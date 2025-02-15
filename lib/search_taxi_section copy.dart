@@ -128,7 +128,7 @@ class _SearchTaxiSectionState extends State<SearchTaxiSection> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: SizedBox(
-                    height: 300,
+                    height: MediaQuery.of(context).size.height * 0.3,
                     width: 350,
                     child: Center(
                       child: Padding(
